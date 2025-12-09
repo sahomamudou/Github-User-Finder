@@ -1,18 +1,26 @@
-import React from "react";
+function UserMeta({
+  icon,
+  text,
+  link = null,
+  className = "space-x-4",
+  theme = "dark",
+}) {
+  const baseTextColor =
+    theme === "dark" ? "text-light-secondary" : "text-dark-primary-900";
+  const linkHoverColor =
+    theme === "dark" ? "hover:text-primary-400" : "hover:text-primary-600";
 
-const UserMeta = ({ icon, text, link = null, className = "space-x-4" }) => {
   return (
     <div
-      className={`flex items-center truncate ${className} ${
-        !text ? "opacity-50" : ""
-      }`}
+      className={`flex items-center ${className} ${!text ? "opacity-50" : ""}`}
     >
-      <span>{icon}</span>
-      <span>
+      <span className="flex-shrink-0">{icon}</span>
+
+      <span className={`break-words ${baseTextColor}`}>
         {link ? (
           <a
             href={link}
-            className="hover:underline hover:text-primary-400 transition"
+            className={`hover:underline ${linkHoverColor} transition break-words`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -26,6 +34,6 @@ const UserMeta = ({ icon, text, link = null, className = "space-x-4" }) => {
       </span>
     </div>
   );
-};
+}
 
 export default UserMeta;
