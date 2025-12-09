@@ -15,7 +15,6 @@ function App() {
   const [username, setUsername] = useState("octocat");
   const [theme, setTheme] = useState("dark");
 
-  // Detect system theme
   useEffect(() => {
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
@@ -23,12 +22,10 @@ function App() {
     setTheme(prefersDark ? "dark" : "light");
   }, []);
 
-  // Apply theme to html root
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
-  // Fetch GitHub user
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -57,7 +54,6 @@ function App() {
       }`}
     >
       <div className="w-full max-w-screen-md 2xl:max-w-[840px] mx-auto py-4 px-4 sm:px-8">
-        {/* TOP BAR */}
         <div className="flex justify-between items-center">
           <h1>
             <Logo dark={theme === "dark"} />
@@ -75,13 +71,10 @@ function App() {
           </button>
         </div>
 
-        {/* SEARCH BAR */}
         <div className="w-full mt-6 sm:mt-10">
           <form onSubmit={handleSubmit} className="relative w-full">
-            {/* Search Icon */}
             <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-primary-500" />
 
-            {/* Input */}
             <input
               type="text"
               name="username"
@@ -97,7 +90,6 @@ function App() {
               defaultValue={username}
             />
 
-            {/* Button inside input */}
             <button
               type="submit"
               className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-semibold transition"
@@ -107,14 +99,12 @@ function App() {
           </form>
         </div>
 
-        {/* USER CARD */}
         <div
           className={`
             rounded-xl mt-8 py-[3.25rem] px-4 sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-y-4 gap-x-10 transition-colors
             ${theme === "dark" ? "bg-dark-primary-600" : "bg-white shadow-md"}
           `}
         >
-          {/* AVATAR */}
           <div className="col-span-1 flex justify-center md:block md:relative">
             <img
               src={user.avatar_url || octocat}
@@ -123,7 +113,6 @@ function App() {
             />
           </div>
 
-          {/* NAME + DATE */}
           <div className="col-span-3 flex flex-col md:flex-row items-center justify-between mt-6 md:mt-0">
             <div>
               <h2
@@ -156,7 +145,6 @@ function App() {
             </div>
           </div>
 
-          {/* BIO */}
           <div className="col-span-3 col-start-1 md:col-start-2 mt-6 md:mt-0 text-center md:text-left">
             <p
               className={
@@ -194,7 +182,6 @@ function App() {
             />
           </div>
 
-          {/* META LINKS */}
           <div
             className={`col-span-3 col-start-1 md:col-start-2 grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-16 mt-6`}
           >
